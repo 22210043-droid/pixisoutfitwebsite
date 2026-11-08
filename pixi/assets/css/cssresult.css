@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap");
+
+body {
+  font-family: "Baloo 2", sans-serif;
+  background: linear-gradient(-45deg, #ffe29f, #ffa9c6, #c9a0f5, #a0e7e5, #ffd166);
+  background-size: 400% 400%;
+  animation: gradientMove 12s ease infinite;
+  color: #3a2e39;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+body::before {
+  width: 320px;
+  height: 320px;
+  background: rgba(255, 209, 102, 0.45);
+  top: -80px;
+  left: -80px;
+}
+
+body::after {
+  width: 380px;
+  height: 380px;
+  background: rgba(201, 160, 245, 0.4);
+  bottom: -100px;
+  right: -100px;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.card {
+  border: none;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 40px rgba(255, 143, 171, 0.35);
+  padding: 40px;
+  max-width: 950px;
+  width: 100%;
+  color: #3a2e39;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 154, 86, 0.25), transparent 70%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.tone-badge {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.tone-warm {
+  background: linear-gradient(90deg, #ff9a56, #ff6f91);
+}
+
+.tone-cool {
+  background: linear-gradient(90deg, #6ee7e0, #4fc3d9);
+}
+
+.tone-neutral {
+  background: linear-gradient(90deg, #d9a5c9, #b892c9);
+}
+
+.palette-box {
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  border-radius: 12px;
+  margin: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}

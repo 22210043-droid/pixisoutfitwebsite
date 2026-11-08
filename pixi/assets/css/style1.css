@@ -1,0 +1,273 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap");
+
+body {
+  font-family: "Baloo 2", sans-serif;
+  background: radial-gradient(circle at 30% 20%, #fff1e0, #ffd6e8 45%, #d9c3f7 100%);
+  color: #3a2e39;
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(55px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+body::before {
+  width: 220px;
+  height: 220px;
+  background: rgba(255, 209, 102, 0.4);
+  top: 5%;
+  right: 10%;
+}
+
+body::after {
+  width: 260px;
+  height: 260px;
+  background: rgba(160, 231, 229, 0.35);
+  bottom: 5%;
+  left: 8%;
+}
+
+h1 {
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+  font-size: 2rem;
+  color: #3a2e39;
+}
+
+p {
+  color: #7a6272;
+  margin-bottom: 35px;
+  font-size: 1rem;
+}
+
+/* Container agar semua elemen center */
+.container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Custom Upload */
+.upload-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.upload-label {
+  display: inline-block;
+  padding: 12px 25px;
+  background: linear-gradient(90deg, #ff9a56, #ff6f91);
+  color: white;
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255, 143, 171, 0.4);
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.upload-label:hover {
+  background: linear-gradient(90deg, #ff6f91, #ff9a56);
+  box-shadow: 0 0 25px rgba(255, 143, 171, 0.7);
+  transform: scale(1.05);
+}
+
+input[type="file"] {
+  display: none;
+}
+
+/* Preview box */
+#preview {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(255, 154, 86, 0.35);
+  width: 320px;
+  min-height: 220px;
+  background: rgba(255, 255, 255, 0.5);
+  transition: all 0.5s ease;
+}
+
+img {
+  border-radius: 16px;
+  max-width: 320px;
+  max-height: 320px;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.02);
+}
+
+/* --- Overlay scanning (sparkle style) --- */
+#scanOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border-radius: 16px;
+  overflow: hidden;
+  display: none;
+}
+
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ffd166, #ff6f91, transparent);
+  box-shadow: 0 0 10px #ffd166, 0 0 20px #ff6f91;
+  animation: scanMove 2s linear infinite;
+}
+
+@keyframes scanMove {
+  0% {
+    top: 0;
+    opacity: 0.3;
+  }
+
+  50% {
+    top: 95%;
+    opacity: 1;
+  }
+
+  100% {
+    top: 0;
+    opacity: 0.3;
+  }
+}
+
+.scan-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 209, 102, 0.25),
+    transparent 70%
+  );
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.scan-text {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #ff6f91;
+  font-weight: bold;
+  text-shadow: 0 0 10px #ffd166;
+  animation: blinkText 1.2s infinite;
+}
+
+@keyframes blinkText {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Glow pulse untuk frame foto */
+#preview.glow-active {
+  box-shadow: 0 0 25px #ffd166, 0 0 50px #ff6f91;
+  animation: frameGlow 2s ease-in-out infinite;
+}
+
+@keyframes frameGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(255, 209, 102, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(255, 111, 145, 0.7);
+  }
+}
+
+/* Tombol analyze ceria */
+#analyzeBtn {
+  display: inline-block;
+  padding: 12px 35px;
+  font-size: 16px;
+  background: linear-gradient(90deg, #ffd166, #ff6f91);
+  color: #fff;
+  border: none;
+  border-radius: 40px;
+  font-weight: 600;
+  box-shadow: 0 0 20px rgba(255, 143, 171, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+#analyzeBtn:hover {
+  box-shadow: 0 0 40px rgba(255, 143, 171, 0.7);
+  transform: scale(1.07);
+  background: linear-gradient(90deg, #ff6f91, #ffd166);
+}
+
+#analyzeBtn:active {
+  transform: scale(0.98);
+}
+
+/* Fade-in animation */
+.fadeIn {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

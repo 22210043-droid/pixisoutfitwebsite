@@ -1,0 +1,445 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap");
+
+/* === Animated Gradient Background seperti index === */
+body {
+  font-family: "Baloo 2", sans-serif;
+  background: linear-gradient(-45deg, #ffe29f, #ffa9c6, #c9a0f5, #a0e7e5, #ffd166);
+  background-size: 400% 400%;
+  animation: gradientMove 12s ease infinite;
+  color: #3a2e39;
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(55px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+body::before {
+  width: 220px;
+  height: 220px;
+  background: rgba(255, 209, 102, 0.35);
+  top: 12%;
+  right: 6%;
+}
+
+body::after {
+  width: 260px;
+  height: 260px;
+  background: rgba(201, 160, 245, 0.3);
+  bottom: 6%;
+  left: 6%;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* === Navbar dari index === */
+.navbar {
+  background: transparent;
+  padding: 1rem 2rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.navbar.scrolled {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 15px rgba(255, 143, 171, 0.3);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  color: #ff6f91 !important;
+}
+
+.btn-back {
+  border: 2px solid #ff6f91;
+  color: #ff6f91;
+  border-radius: 30px;
+  padding: 6px 18px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+  background: #ff6f91;
+  color: #fff;
+}
+
+/* === Container utama === */
+.container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  margin-top: 120px;
+  position: relative;
+  z-index: 1;
+}
+
+h1 {
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+  font-size: 2rem;
+  color: #3a2e39;
+}
+
+p {
+  color: #6b5865;
+  margin-bottom: 35px;
+  font-size: 1rem;
+}
+
+/* Custom Upload */
+.upload-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.upload-label {
+  display: inline-block;
+  padding: 12px 25px;
+  background: linear-gradient(90deg, #ff9a56, #ff6f91);
+  color: white;
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255, 143, 171, 0.4);
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.upload-label:hover {
+  background: linear-gradient(90deg, #ff6f91, #ff9a56);
+  box-shadow: 0 0 25px rgba(255, 143, 171, 0.7);
+  transform: scale(1.05);
+}
+
+input[type="file"] {
+  display: none;
+}
+
+/* Preview box */
+#preview {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(255, 154, 86, 0.35);
+  width: 320px;
+  min-height: 220px;
+  background: rgba(255, 255, 255, 0.5);
+  transition: all 0.5s ease;
+}
+
+img {
+  border-radius: 16px;
+  max-width: 320px;
+  max-height: 320px;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.02);
+}
+
+/* --- Overlay scanning (sparkle style) --- */
+#scanOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border-radius: 16px;
+  overflow: hidden;
+  display: none;
+}
+
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ffd166, #ff6f91, transparent);
+  box-shadow: 0 0 10px #ffd166, 0 0 20px #ff6f91;
+  animation: scanMove 2s linear infinite;
+}
+
+@keyframes scanMove {
+  0% {
+    top: 0;
+    opacity: 0.3;
+  }
+
+  50% {
+    top: 95%;
+    opacity: 1;
+  }
+
+  100% {
+    top: 0;
+    opacity: 0.3;
+  }
+}
+
+.scan-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 209, 102, 0.25),
+    transparent 70%
+  );
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.scan-text {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #ff6f91;
+  font-weight: bold;
+  text-shadow: 0 0 10px #ffd166;
+  animation: blinkText 1.2s infinite;
+}
+
+@keyframes blinkText {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Glow pulse untuk frame foto */
+#preview.glow-active {
+  box-shadow: 0 0 25px #ffd166, 0 0 50px #ff6f91;
+  animation: frameGlow 2s ease-in-out infinite;
+}
+
+@keyframes frameGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(255, 209, 102, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(255, 111, 145, 0.7);
+  }
+}
+
+/* Tombol analyze ceria */
+#analyzeBtn {
+  display: inline-block;
+  padding: 12px 35px;
+  font-size: 16px;
+  background: linear-gradient(90deg, #ffd166, #ff6f91);
+  color: #fff;
+  border: none;
+  border-radius: 40px;
+  font-weight: 600;
+  box-shadow: 0 0 20px rgba(255, 143, 171, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+#analyzeBtn:hover {
+  box-shadow: 0 0 40px rgba(255, 143, 171, 0.7);
+  transform: scale(1.07);
+  background: linear-gradient(90deg, #ff6f91, #ffd166);
+}
+
+#analyzeBtn:active {
+  transform: scale(0.98);
+}
+
+/* Fade-in animation */
+.fadeIn {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Revisi input antropometri & status analisis === */
+body {
+  min-height: 100vh;
+  height: auto;
+  overflow-y: auto;
+  padding: 95px 0 45px;
+}
+
+.container {
+  margin-top: 25px;
+  gap: 18px;
+}
+
+.page-subtitle {
+  margin-bottom: 8px;
+}
+
+.upload-box {
+  width: min(92vw, 620px);
+  padding-bottom: 30px;
+}
+
+.physical-inputs {
+  width: min(100%, 520px);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.physical-field {
+  text-align: left;
+}
+
+.physical-field label {
+  display: block;
+  margin-bottom: 7px;
+  color: #5c3d52;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.input-with-unit {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 111, 145, 0.35);
+  border-radius: 14px;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+}
+
+.input-with-unit input {
+  width: 100%;
+  min-width: 0;
+  padding: 11px 12px;
+  color: #3a2e39;
+  background: transparent;
+  border: 0;
+  outline: 0;
+}
+
+.input-with-unit input::placeholder {
+  color: rgba(58, 46, 57, 0.45);
+}
+
+.input-with-unit span {
+  padding: 0 12px;
+  color: #ff6f91;
+  font-weight: 600;
+}
+
+.photo-guide {
+  width: min(100%, 520px);
+  padding: 10px 13px;
+  border-radius: 12px;
+  color: #5c3d52;
+  background: rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.analysis-status {
+  min-height: 22px;
+  width: min(100%, 520px);
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.analysis-status.info { color: #7a5570; }
+.analysis-status.success { color: #2fae7a; }
+.analysis-status.error { color: #e0566e; }
+
+#analyzeBtn:disabled {
+  opacity: 0.65;
+  cursor: wait;
+  transform: none;
+}
+
+.preview-placeholder {
+  position: static;
+  padding: 20px;
+}
+
+@media (max-width: 576px) {
+  body {
+    padding-top: 90px;
+  }
+
+  .physical-inputs {
+    grid-template-columns: 1fr;
+  }
+
+  #preview {
+    width: min(88vw, 320px);
+  }
+}
