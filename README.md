@@ -206,4 +206,4 @@ Lisensi belum ditentukan.
 ## Penulis
 
 <!-- TODO: isi nama, kampus, kontak -->
-- **Nama** â Skripsi, Program Studi, Universitas
+- **Putri Chalista Tumiwa** â Skripsi, Program Studi Teknik Informatika, Universitas Negeri Manado
