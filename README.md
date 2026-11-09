@@ -1,4 +1,4 @@
-# Sistem Rekomendasi Outfit Berbasis Analisis Foto
+# Sistem Rekomendasi Outfit Berbasis Analisis Warna Kulit dan Bentuk Tubuh
 
 Aplikasi web yang menganalisis **warna kulit** dan **bentuk tubuh** dari satu foto, lalu menampilkan **palet warna outfit** dan **panduan potongan (Do's & Don'ts)** yang sesuai.
 
